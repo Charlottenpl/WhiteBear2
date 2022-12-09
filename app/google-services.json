@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "987877001839",
+    "project_id": "whitebear-002",
+    "storage_bucket": "whitebear-002.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987877001839:android:fe8925be0f954986251b9a",
+        "android_client_info": {
+          "package_name": "com.sky.whitebear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987877001839-3uvhtvljg7uqsm76mtmcb7vqmcvq45f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCauHWfDQtg6gFbpXdccqmMB-3dEdOhVvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987877001839-3uvhtvljg7uqsm76mtmcb7vqmcvq45f7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
