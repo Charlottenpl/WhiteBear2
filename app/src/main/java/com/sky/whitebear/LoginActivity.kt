@@ -1,0 +1,91 @@
+package com.sky.whitebear
+
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import com.sky.whitebear.view.MainActivity
+import com.topjoy.zeussdk.common.MCConstant
+import com.topjoy.zeussdk.control.ZeusSDK
+
+class LoginActivity : Activity() {
+
+    //静态变量
+    companion object {
+        lateinit var context: Context
+        lateinit var TAG: String
+    }
+
+    @SuppressLint("MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        context = this
+        TAG = "LoginActivity"
+        setContentView(R.layout.login)
+
+        init(findViewById(R.id.img_icon))
+
+    }
+
+    fun init(view : View) {
+        var appid = "E7GZ597KPJS4"
+        var signKey = "9BR42QW9ABZ4EHY2"
+        var service = "https://abroad.topjoy.com/"
+
+        ZeusSDK.getInstance()
+            .init(context, appid, signKey, service, true) { resultCode, msg, result ->
+                if (resultCode == MCConstant.RESULT_CODE_SUCCESS){
+                    addText("init Success")
+                }else {
+                    addText(result)
+                }
+
+            }
+    }
+
+
+    fun login(view : View) {
+        ZeusSDK.getInstance().login(false) { resultCode, msg, result ->
+            if (resultCode == MCConstant.RESULT_CODE_SUCCESS){
+                addText("login Success")
+                addText(result)
+                gotoMain()
+            }
+
+
+        }
+    }
+
+    fun googleLogin(view : View){
+        ZeusSDK.getInstance().loginThird(context as Activity?, MCConstant.LOGIN_THIRD_TYPE_GOOGLE_ID, ){ resultCode, msg, result ->
+            if (resultCode == MCConstant.RESULT_CODE_SUCCESS){
+                addText("googleLogin success")
+                addText(result)
+                gotoMain()
+            }
+        }
+    }
+
+
+    fun gotoMain(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    /**
+     * 添加log
+     */
+    fun addText(msg: String){
+        Log.e(TAG, msg)
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+}
+
+
+
+
