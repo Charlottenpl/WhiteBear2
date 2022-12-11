@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -26,6 +27,8 @@ class LoginActivity : Activity() {
         context = this
         TAG = "LoginActivity"
         setContentView(R.layout.login)
+        window.statusBarColor = Color.TRANSPARENT
+        setLightStatusBar()
 
         init(findViewById(R.id.img_icon))
 
@@ -83,6 +86,16 @@ class LoginActivity : Activity() {
     fun addText(msg: String){
         Log.e(TAG, msg)
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setLightStatusBar() {
+        val flags = window.decorView.systemUiVisibility
+        window.decorView.systemUiVisibility = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
+
+    private fun setDarkStatusBar() {
+        val flags = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility = flags xor View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 }
 
