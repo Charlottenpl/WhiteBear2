@@ -87,6 +87,7 @@ dependencies {
 
 
     /** 需要加入的依赖 **/
-    implementation 'com.topjoy:zeussdk-android:1.0.0'
+    implementation 'com.topjoy:zeussdk-android:1.0.0' //Zeus
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha04' //viewpager2
 
 }

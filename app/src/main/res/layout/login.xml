@@ -9,8 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/icon_text"
             android:layout_width="wrap_content"
@@ -36,13 +37,13 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
-            android:onClick="login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="50dp"
             android:background="#00848D"
+            android:onClick="login"
             android:text="一键登录"
             android:textColor="@color/white"
             android:textSize="16dp"
@@ -60,33 +61,31 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
-                android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_margin="10dp"
                 android:src="@drawable/iconqq" />
 
             <ImageView
-                android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_margin="10dp"
                 android:src="@drawable/iconweixin" />
 
             <ImageView
-                android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_margin="10dp"
                 android:src="@drawable/iconfacebook" />
 
             <ImageView
-                android:onClick="googleLogin"
-                android:layout_margin="10dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:onClick="googleLogin"
                 android:src="@drawable/icongoogle" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
