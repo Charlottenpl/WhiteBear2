@@ -2,60 +2,54 @@ package com.sky.whitebear.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.sky.whitebear.LoginActivity
 
 class Data {
-    private lateinit var context : Context;
     private val DataBase : String = "WhiteBear"
-    private lateinit var sp : SharedPreferences ;
 
-    fun check(){
-        if (sp == null){
-            sp = context.getSharedPreferences(DataBase,Context.MODE_PRIVATE)
-        }
+    open fun instance():SharedPreferences{
+        var sp = LoginActivity.context.getSharedPreferences(DataBase,Context.MODE_PRIVATE)
+        return sp
     }
 
     open fun set(key:String,value:String){
-        check()
-        var editer = sp.edit()
+        var editer = instance().edit()
         editer.putString(key,value)
         editer.apply()
     }
 
     open fun set(key:String,value:Int){
-        check()
-        var editer = sp.edit()
+        var editer = instance().edit()
         editer.putInt(key,value)
         editer.apply()
     }
 
     open fun set(key:String,value:Float){
-        check()
-        var editer = sp.edit()
+        var editer = instance().edit()
         editer.putFloat(key,value)
         editer.apply()
     }
 
     open fun set(key:String,value:Boolean){
-        check()
-        var editer = sp.edit()
+        var editer = instance().edit()
         editer.putBoolean(key,value)
         editer.apply()
     }
 
     open fun get(key: String): String {
-        return sp.getString(key, "")!!
+        return instance().getString(key, "")!!
     }
 
     open fun getInt(key:String): Int {
-        return sp.getInt(key, 0)
+        return instance().getInt(key, 0)
     }
 
     open fun getFloat(key:String): Float {
-        return sp.getFloat(key, 0.0F)
+        return instance().getFloat(key, 0.0F)
     }
 
     open fun getBoolean(key:String): Boolean {
-        return sp.getBoolean(key, false)
+        return instance().getBoolean(key, false)
     }
 }
 

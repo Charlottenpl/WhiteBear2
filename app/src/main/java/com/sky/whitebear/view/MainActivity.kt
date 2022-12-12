@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         homeBtn.setOnClickListener(this)
         chatBtn.setOnClickListener(this)
         setBtn.setOnClickListener(this)
+        setItem(2)
     }
 
     override fun onClick(p0: View?) {
@@ -80,7 +81,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
      */
     private fun setItem(item: Int) {
         viewPager2.currentItem = item
-
     }
 
     private fun setLightStatusBar() {
