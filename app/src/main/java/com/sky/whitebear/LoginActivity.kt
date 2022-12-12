@@ -6,12 +6,18 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.sky.whitebear.util.Data
+import com.sky.whitebear.util.InitSuccess
+import com.sky.whitebear.util.LoginSuccess
 import com.sky.whitebear.view.MainActivity
 import com.topjoy.zeussdk.common.MCConstant
 import com.topjoy.zeussdk.control.ZeusSDK
+import initSuccess
+import loginSuccess
 
 class LoginActivity : Activity() {
 
@@ -34,16 +40,17 @@ class LoginActivity : Activity() {
 
     }
 
-    fun init(view : View) {
+    fun init(view: View) {
         var appid = "E7GZ597KPJS4"
         var signKey = "9BR42QW9ABZ4EHY2"
         var service = "https://abroad.topjoy.com/"
 
         ZeusSDK.getInstance()
             .init(context, appid, signKey, service, true) { resultCode, msg, result ->
-                if (resultCode == MCConstant.RESULT_CODE_SUCCESS){
+                if (resultCode == MCConstant.RESULT_CODE_SUCCESS) {
                     addText("init Success")
-                }else {
+                    initSuccess = true
+                } else {
                     addText(result)
                 }
 
@@ -51,21 +58,29 @@ class LoginActivity : Activity() {
     }
 
 
-    fun login(view : View) {
+    fun login(view: View) {
+        if (!initSuccess) {
+            return
+        }
         ZeusSDK.getInstance().login(false) { resultCode, msg, result ->
-            if (resultCode == MCConstant.RESULT_CODE_SUCCESS){
-                addText("login Success")
-                addText(result)
+            if (resultCode == MCConstant.RESULT_CODE_SUCCESS) {
                 gotoMain()
+                loginSuccess = true
+            } else {
+                addText(result)
             }
-
-
         }
     }
 
-    fun googleLogin(view : View){
-        ZeusSDK.getInstance().loginThird(context as Activity?, MCConstant.LOGIN_THIRD_TYPE_GOOGLE_ID, ){ resultCode, msg, result ->
-            if (resultCode == MCConstant.RESULT_CODE_SUCCESS){
+    fun googleLogin(view: View) {
+        if (!initSuccess) {
+            return
+        }
+        ZeusSDK.getInstance().loginThird(
+            context as Activity?,
+            MCConstant.LOGIN_THIRD_TYPE_GOOGLE_ID,
+        ) { resultCode, msg, result ->
+            if (resultCode == MCConstant.RESULT_CODE_SUCCESS) {
                 addText("googleLogin success")
                 addText(result)
                 gotoMain()
@@ -74,7 +89,7 @@ class LoginActivity : Activity() {
     }
 
 
-    fun gotoMain(){
+    fun gotoMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
@@ -83,7 +98,7 @@ class LoginActivity : Activity() {
     /**
      * 添加log
      */
-    fun addText(msg: String){
+    fun addText(msg: String) {
         Log.e(TAG, msg)
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }

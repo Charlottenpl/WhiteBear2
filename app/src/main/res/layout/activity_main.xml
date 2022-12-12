@@ -18,11 +18,54 @@
             android:layout_height="0dp"
             android:layout_weight="10" />
 
-        <TableLayout
-            android:id="@+id/tabnav"
+        <LinearLayout
+            android:id="@+id/nav_btn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#ffbfcc" />
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/nav_btn_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="home" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nav_btn_chat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="chat" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nav_btn_set"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="set" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
